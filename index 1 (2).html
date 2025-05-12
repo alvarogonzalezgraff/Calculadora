@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center wx-auto text-[36px]">
+    <div class="bg-gray-800 p-4 rounded-lg shadow-md w-100">
+        <!-- pantalla -->
+        <input type="text" 
+               id="display" 
+               class="bg-white mb-3 p-2 text-right border rounded w-full"
+               readonly>
+        
+        <!-- botones -->
+        <div class="grid grid-cols-4 gap-1 text-white align-items">
+            <button onclick="clearDisplay()" class="col-span-3 bg-gray-600 p-2 rounded hover:bg-red-500">C</button>
+            <button onclick="appendToDisplay('+')" class="bg-orange-500 p-2 rounded hover:bg-orange-300">+</button>
+            
+            <button onclick="appendToDisplay('7')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">7</button>
+            <button onclick="appendToDisplay('8')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">8</button>
+            <button onclick="appendToDisplay('9')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">9</button>
+            <button onclick="appendToDisplay('-')" class="bg-orange-500 p-2 rounded hover:bg-orange-300">-</button>
+            
+            <button onclick="appendToDisplay('4')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">4</button>
+            <button onclick="appendToDisplay('5')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">5</button>
+            <button onclick="appendToDisplay('6')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">6</button>
+            <button onclick="appendToDisplay('*')" class="bg-orange-500 p-2 rounded hover:bg-orange-300">×</button>
+            
+            <button onclick="appendToDisplay('1')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">1</button>
+            <button onclick="appendToDisplay('2')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">2</button>
+            <button onclick="appendToDisplay('3')" class="p-2 bg-gray-500 rounded hover:bg-gray-100 hover:text-black">3</button>
+            <button onclick="appendToDisplay('/')" class="bg-orange-500 p-2 rounded hover:bg-orange-300">÷</button>
+            
+            <button onclick="appendToDisplay('0')" class="col-span-2 p-2 bg-gray-500 rounded hover:bg-gray-100">0</button>
+            <button onclick="appendToDisplay('.')" class="p-2 bg-gray-500 rounded hover:bg-gray-100">.</button>
+            <button onclick="calculate()" class="bg-orange-500 p-2 rounded hover:bg-orange-300">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+        
+        function clearDisplay() {
+            display.value = '';
+        }
+        
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = 'Error';
+                setTimeout(clearDisplay, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
